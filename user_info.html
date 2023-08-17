@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="styles1.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step-form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .form-wrap {
+            background-color: #e1dfdf;
+            background-image: url(books.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5%;
+        }
+
+        .form-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #262726;
+
+        }
+
+        .form-title {
+            background-color: #ff1046;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            font-size: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0;
+        }
+
+        .progress-bar {
+            margin: 25px 0;
+            padding: 0;
+            overflow: hidden;
+            counter-reset: step;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+        }
+
+        .progress-bar li {
+            list-style-type: none;
+            width: 100%;
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+            position: relative;
+            color: #fff;
+        }
+
+        .progress-bar li::before {
+            position: relative;
+            z-index: 2;
+            content: counter(step);
+            counter-increment: step;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 100px;
+            margin: 0 auto 10px auto;
+            background-color: #191919;
+            color: #f5f5f5;
+        }
+
+        .progress-bar li::after {
+            content: '';
+            width: 100%;
+            height: 6px;
+            position: absolute;
+            left: -50%;
+            top: 17px;
+            z-index: 1;
+            background-color: #191919;
+        }
+
+        .progress-bar li.active::before,
+        .progress-bar li.active::after {
+            background: linear-gradient(to right, #FF1046 20%, #E01660 40%, #E01660 60%, #FF1046 80%);
+            background-size: 200% auto;
+            -webkit-animation: effect 1s linear infinite;
+            animation: effect 1s linear infinite;
+            color: #111111;
+        }
+
+        @keyframes effect {
+            to {
+                background-position: -200% center;
+            }
+        }
+
+        .step-group {
+            margin-top: 50px;
+        }
+
+        .form-box {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .form-box .form-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .form-box .form-group .form-field {
+            width: 100%;
+            height: 50px;
+            padding: 10px 15px;
+            font-size: 18px;
+            color: #f5f5f5;
+            background-color: transparent;
+            border: 1px solid #ced4da;
+            outline: none;
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            -ms-border-radius: 2px;
+            -o-border-radius: 2px;
+        }
+
+        .btn-step {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn-step button {
+            background-color: #ff1046;
+            border: none;
+            color: #fff;
+            padding: 10px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .form-box .form-group textarea.form-field {
+            min-height: 190px;
+        }
+
+        #step-group-2,
+        #step-group-3 {
+            display: none;
+        }
+
+
+        #sucess-box {
+            background-color: #fff;
+            height: 350px;
+            display: none;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+        }
+
+        #sucess-box span {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border: 6px solid green;
+            font-size: 60px;
+            color: green;
+            font-weight: 800;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+        }
+
+        #sucess-box .sucess-text {
+            font-size: 30px;
+            color: green;
+        }
+
+        #sucess-box #reset-btn {
+            background-color: #ff1046;
+            border: none;
+            color: #fff;
+            padding: 10px 25px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<script>
+     window.addEventListener("load", () => {
+    const form = document.getElementById("multi-step-form");
+    const formContainerBox = document.getElementById("form-container-box");
+    const step2 = document.getElementById("step2");
+    const step3 = document.getElementById("step3");
+    const stepGroup1 = document.getElementById("step-group-1");
+    const stepGroup2 = document.getElementById("step-group-2");
+    const stepGroup3 = document.getElementById("step-group-3");
+    const stepNext1 = document.getElementById("step-next-1");
+    const stepNext2 = document.getElementById("step-next-2");
+    const stepNext3 = document.getElementById("step-next-3");
+    const stepPrev1 = document.getElementById("step-prev-1");
+    const stepPrev2 = document.getElementById("step-prev-2");
+
+    const sucessBox = document.getElementById("sucess-box");
+    const ResetBtn = document.getElementById("reset-btn")
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+    })
+
+    stepNext1.addEventListener("click", (e) => {
+        stepGroup1.style.display = "none";
+        stepGroup2.style.display = "block";
+        step2.classList.add("active");
+    });
+
+    stepNext2.addEventListener("click", () => {
+        stepGroup2.style.display = "none";
+        stepGroup3.style.display = "block";
+        step3.classList.add("active");
+    });
+
+    stepPrev1.addEventListener("click", () => {
+        stepGroup1.style.display = "block";
+        stepGroup2.style.display = "none";
+        step2.classList.remove("active");
+    });
+    stepPrev2.addEventListener("click", () => {
+        stepGroup3.style.display = "none";
+        stepGroup2.style.display = "block";
+        step3.classList.remove("active");
+    })
+    stepNext3.addEventListener("click", () => {
+        formContainerBox.style.display = "none";
+        sucessBox.style.display = "flex";
+    });
+    ResetBtn.addEventListener("click", () => {
+        sucessBox.style.display = "none";
+        formContainerBox.style.display = "none";
+        window.location.reload();
+    })
+
+
+})
+</script>
+<body>
+
+    <section class="form-wrap">
+        <div class="form-container">
+            <form action="" id="multi-step-form">
+                <div id="form-container-box">
+                    <h1 class="form-title">User Information</h1>
+                    <ul class="progress-bar">
+                        <li id="step1" class="active">User Info</li>
+                        <li id="step2">Address</li>
+                        <li id="step3">Comments</li>
+                    </ul>
+
+                    <!-- ======================Step Group 1============== -->
+                    <div class="step-group" id="step-group-1">
+                        <div class="form-box">
+                            <div class="form-group">
+                                <input type="text" class="form-field" placeholder="First Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-field" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="form-box">
+                            <div class="form-group">
+                                <input type="email" class="form-field" placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-box">
+                            <div class="form-group">
+                                <input type="text" class="form-field" placeholder="Phone">
+                            </div>
+                        </div>
+
+                        <div class="form-box">
+                            <div class="btn-step">
+                                <button id="step-next-1">Next ￫</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ======================Step Group 2============== -->
+                    <div class="step-group" id="step-group-2">
+                        <div class="form-box">
+                            <div class="form-group">
+                                <input type="text" class="form-field" placeholder="Address 1">
+                            </div>
+                        </div>
+
+                        <div class="form-box">
+                            <div class="form-group">
+                                <input type="text" class="form-field" placeholder="Address 2">
+                            </div>
+                        </div>
+
+                        <div class="form-box">
+                            <div class="form-group">
+                                <input type="text" class="form-field" placeholder="City">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-field" placeholder="Zip">
+                            </div>
+
+                        </div>
+
+                        <div class="form-box">
+                            <div class="btn-step">
+                                <button id="step-prev-1">￩ Prev</button>
+                                <button id="step-next-2">Next ￫</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- ======================Step Group 3============== -->
+                    <div class="step-group" id="step-group-3">
+                        <div class="form-box">
+                            <div class="form-group">
+                                <textarea class="form-field" placeholder="Message" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-box">
+                            <div class="btn-step">
+                                <button id="step-prev-2">￩ Prev</button>
+                                <button onclick="window.location.href='paymentform.html'">Buy</button>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="sucess-box">
+                    <span class="done">✔</span>
+                    <p class="sucess-text">Your message was sent successful. Thanks.</p>
+                    <a href="paymentform.html" ><button > buy</button></a>
+                </div>
+
+            </form>
+
+
+        </div>
+    </section>
+
+    <footer>
+        <!-- Footer section with additional navigation or links -->
+        <nav>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </nav>
+        <p>&copy; 2023 ONLINE Platform. All rights reserved.</p>
+      </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

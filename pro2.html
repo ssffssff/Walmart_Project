@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Bookstore</title>
+  <link rel="stylesheet" type="text/css" href="styles1.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your website description goes here">
+  <meta name="keywords" content="your, website, keywords">
+  <meta name="author" content="Saurabh Gawali">
+  <meta property="og:title" content="Bookstore - Your Tagline">
+  <meta property="og:description" content="Your website description goes here">
+  <meta property="og:image" content="logo.jpeg">
+  <meta property="og:url" content="http://saurabhbookstore.com">
+  <meta property="og:type" content="http://saurabhbookstore.com">
+  <meta property="og:site_name" content="Bookstore">
+  <link rel="icon" type="image/x-icon" href="saurabh.ico">
+  <style>
+    header,
+    .logo-container {
+      display: flex;
+      align-items: center;
+      background-color: #f9f9f9;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 70px;
+      height: 50px;
+      margin-right: 5px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-left: 5px;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #a8a2a2;
+      background-size: 30px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    a:hover {
+      background-color: #555;
+    }
+    .my {
+      margin-left: 5px;
+    }
+
+    #genre-filter {
+      background-color: #2c3e50; 
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #genre-filter:hover {
+      background-color: #34495e;
+    }
+    body{
+      background-image: url("books1.jpeg");
+    }
+    .hidden-footer {
+    display: none;
+  }
+  .fixed-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f9f9f9;
+      padding: 10px;
+      text-align: center;
+      display: none;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="logo.jpeg" alt="Logo" class="logo">
+    <h1 style="font-size: 30px; flex: left;color: black;"> Walmart</h1>
+  </header>
+  <nav style="background-color: #a8a2a2; background-size: 30px;padding: 3.3px;padding-left: 200px;">
+    <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="cart.html">Login</a></li>
+          <li><a href="pro2.html" onclick="return checkLogin()">Products</a></li>
+          <li><a href="About.html" onclick="return checkLogin()">About Us</a></li>
+          <li><a href="Analytics.html" onclick="return checkLogin()">Analytics</a></li>
+      <li id="genre-filter-container" style="margin: 0;padding: 0;">
+        <select id="genre-filter" onchange="handleGenreFilter()">
+
+          <option value="All" selected disabled>All Genres</option>
+          <option value="T-Shirts">T-Shirts</option>
+          <option value="Shoes">Shoes</option>
+          <option value="Sandals">Sandals</option>
+          <option value="Jeans">Jeans</option>
+        </select>
+        
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div id="product-list">
+      <!-- Inside the product display loop -->
+    </div>
+  </div>
+  <footer class="fixed-footer hidden-footer">
+    <nav>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2023 ONLINE Platform. All rights reserved.</p>
+  </footer>
+  <script src="script1.js"></script>
+  </script>
+</body>
+
+</html>

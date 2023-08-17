@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Slideshow with Centered Thoughts</title>
+  <link rel="stylesheet" type="text/css" href="styles1.css">
+  <link rel="stylesheet" type="text/css" href="styles2.css"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your website description goes here">
+  <meta name="keywords" content="your, website, keywords">
+  <meta name="author" content="Saurabh Gawali">
+  <meta property="og:title" content="Bookstore - Your Tagline">
+  <meta property="og:description" content="Your website description goes here">
+  <meta property="og:image" content="logo.jpeg">
+  <meta property="og:url" content="http://saurabhbookstore.com">
+  <meta property="og:type" content="http://saurabhbookstore.com">
+  <meta property="og:site_name" content="Bookstore">
+  <link rel="icon" type="image/x-icon" href="saurabh.ico">
+
+  <style>
+    #slideshow {
+      position: relative;
+      max-width: 100%;
+      height: auto;
+    }
+    #about-us1 {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 20px;
+      z-index: 2;
+    }
+
+    #about-us {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      font-size: 20px;
+      z-index: 2;
+    }
+
+    #slideshow img {
+      display: none;
+      width: 100%;
+      height: 800px;
+    }
+
+    .thought {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: transparent;
+      font-size: 24px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      transition: color 0.6s;
+      font-family: cursive;
+    }
+
+    .thought.active {
+      color: white;
+      transition: color 0.6s;
+    }
+
+    .slide-buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .slide-buttons button {
+      margin: 5px;
+      padding: 5px 10px;
+      font-size: 24px;
+      border: none;
+      background-color: transparent;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .slide-buttons button:hover {
+      color: lightgray;
+    }
+
+    p {
+      color: hsl(0, 0%, 100%);
+      transition: background-color 0.2s;
+      font-size: 30px;
+      font-family:fantasy
+    }
+  </style>
+</head>
+<div id="about-us">
+  <a href="home.html"
+    style="color: rgb(255, 255, 255); font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: smaller;">
+    🡨 Go back to Home page</a>
+</div>
+<div id="about-us1">
+  <p style="color: #ffffff; text-align: center;font-size: larger;">About Us</p>
+</div>
+<!-- <body style="background-image: none;">
+  <header>
+    <h1 style="color: white;">About Us</h1>
+  </header>
+  <div id="search-container" class="my">
+    <input type="text" id="search-input" placeholder="Search your product">
+    <button id="search-button" onclick="search()">Search</button>
+  </div>
+    <nav style="background-color: black; background-size: 30px;padding: 10px;">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="cart.html">Login\sign_up</a></li>
+        <li><a href="pro2.html">buy Product</a></li>
+        <li><a href="#">My Products</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="cantact.html">Contact Us</a></li>
+    </ul>
+</nav> -->
+<div id="slideshow">
+  <img src="image1.png" alt="Image 1">
+  <div class="thought">
+    <p>"When I look back, I am so impressed again with the life-giving power of literature. If I were a young person
+      today, trying to gain a sense of myself in the world, I would do that again by reading, just as I did when I was
+      young." – Maya Angelou</p>
+  </div>
+
+  <img src="image2.jpeg" alt="Image 2">
+  <div class="thought">
+    <p>"I think books are like people, in the sense that they’ll turn up in your life when you most need them." – Emma
+      Thompson</p>
+  </div>
+
+  <img src="image2.jpg" alt="Image 3">
+  <div class="thought">
+    <p>I love walking into a bookstore. It’s like all my friends are sitting on shelves, waving their pages at me.
+      ~Tahereh Mafi
+    </p>
+  </div>
+  <img src="image4.jpg" alt="Image 3">
+  <div class="thought">
+    <p>"A book is a garden, an orchard, a storehouse, a party, a company by the way, a counselor, a multitude of
+      counselors." – Charles Baudelaire</p>
+  </div>
+
+  <div class="slide-buttons">
+    <button onclick="previousSlide()">&lt;</button>
+    <button onclick="nextSlide()">&gt;</button>
+  </div>
+</div>
+
+<script>
+  var currentSlide = 0;
+  var slides = Array.from(document.getElementById('slideshow').getElementsByTagName('img'));
+  var thoughts = Array.from(document.getElementById('slideshow').getElementsByClassName('thought'));
+
+  function showSlide(slideIndex) {
+    slides.forEach(function (slide) {
+      slide.style.display = 'none';
+    });
+
+    thoughts.forEach(function (thought) {
+      thought.style.display = 'none';
+    });
+
+    slides[slideIndex].style.display = 'block';
+    thoughts[slideIndex].style.display = 'block';
+  }
+
+  function previousSlide() {
+    currentSlide--;
+    if (currentSlide < 0) {
+      currentSlide = slides.length - 1;
+    }
+    showSlide(currentSlide);
+  }
+
+  function nextSlide() {
+    currentSlide++;
+    if (currentSlide >= slides.length) {
+      currentSlide = 0;
+    }
+    showSlide(currentSlide);
+  }
+
+  showSlide(currentSlide);
+
+  setInterval(nextSlide, 3000);
+
+</script>
+</body>
+
+</html>

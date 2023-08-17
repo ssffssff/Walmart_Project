@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login and Registration Form</title>
+  <link rel="stylesheet" type="text/css" href="styles1.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your website description goes here">
+  <meta name="keywords" content="your, website, keywords">
+  <meta name="author" content="Saurabh Gawali">
+  <meta property="og:title" content="Bookstore - Your Tagline">
+  <meta property="og:description" content="Your website description goes here">
+  <meta property="og:image" content="logo.jpeg">
+  <meta property="og:url" content="http://saurabhbookstore.com">
+  <meta property="og:type" content="http://saurabhbookstore.com">
+  <meta property="og:site_name" content="Bookstore">
+  <link rel="icon" type="image/x-icon" href="saurabh.ico">
+  <style>
+    header,
+    .logo-container {
+      display: flex;
+      align-items: center;
+      background-color: #f9f9f9;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 70px;
+      height: 50px;
+      margin-right: 5px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-left: 5px;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #a8a2a2;
+      background-size: 30px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    a:hover {
+      background-color: #555;
+    }
+    .my {
+      margin-left: 5px;
+    }
+
+    #genre-filter {
+      background-color: #2c3e50;
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #genre-filter:hover {
+      background-color: #34495e;
+    }
+    body{
+      background-image: url("books1.jpeg");
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .form-footer a {
+      text-decoration: none;
+    }
+  </style>
+  <script src="script2.js"> </script>
+</head>
+<body>
+  <header>
+    <img src="logo.jpeg" alt="Logo" class="logo">
+    <h1 style="font-size: 30px; flex: left;color: black;"> Walmart</h1>
+  </header>
+  <nav style="background-color: #a8a2a2; background-size: 30px;padding: 10px;padding-left: 200px ;">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="cart.html">Login</a></li>
+      <li><a href="pro2.html" onclick="return checkLogin()">Products</a></li>
+      <li><a href="About.html" onclick="return checkLogin()">About Us</a></li>
+      <li><a href="Analytics.html" onclick="return checkLogin()">Analytics</a></li>
+    </ul>
+  </nav>
+  <div class="container" style="margin-top: 20px;">
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="login-email" required>Email</label>
+      <input type="text" id="login-email" placeholder="Enter your email" required>
+      
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" placeholder="Enter your password" required>
+      
+      <button type="submit" onclick="login()">Login</button>
+      
+      <div class="form-footer">
+        <a href="#">Forgot password?</a>
+        <br>
+        <a href="#" onclick="showSignUpForm()">Create an account</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="container" style="display: none;" id="signup-container">
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+      <label for="signup-name">Name</label>
+      <input type="text" id="signup-name" placeholder="Enter your name" required>
+      
+      <label for="signup-email">Email</label>
+      <input type="text" id="signup-email" placeholder="Enter your email" required>
+      
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" placeholder="Enter your password" required>
+      
+      <button type="submit" onclick="signup()">Sign Up</button>
+      <div class="form-footer">
+        <a href="#" onclick="showLoginForm()">Back to Login</a>
+      </div>
+    </form>
+  </div>
+  <footer style="margin-top: 200px;">
+    <nav>
+        <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Sitemap</a></li>
+        </ul>
+    </nav>
+    <p>&copy; 2023 ONLINE Platform. All rights reserved.</p>
+</footer>
+  <script>
+      function showSignUpForm() {
+      document.getElementById("login-form").style.display = "none";
+      document.getElementById("signup-container").style.display = "block";
+    }
+
+    function showLoginForm() {
+      document.getElementById("login-form").style.display = "block";
+      document.getElementById("signup-container").style.display = "none";
+    }
+
+    function login() {
+      var email = document.getElementById("login-email").value;
+      var password = document.getElementById("login-password").value;
+
+      console.log("Login Form Submitted");
+      console.log("Email:", email);
+      console.log("Password:", password);
+
+      if (email === localStorage.getItem("userEmail") && password === localStorage.getItem("userPassword")) {
+        console.log("Login successful");
+        alert("You have successfully logged in.");
+        localStorage.setItem("loggedIn", true);
+        window.location.href = "pro2.html";
+      } else {
+        alert("Invalid email or password. Please try again.");
+      }
+    }
+
+    function signup() {
+      var name = document.getElementById("signup-name").value;
+      var email = document.getElementById("signup-email").value;
+      var password = document.getElementById("signup-password").value;
+
+      console.log("Sign Up Form Submitted");
+      console.log("Name:", name);
+      console.log("Email:", email);
+      console.log("Password:", password);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userPassword", password);
+      alert("You have successfully signed up.");
+      document.getElementById("signup-form").reset();
+      showLoginForm();
+    }
+
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      login();
+      this.reset();
+    });
+
+    document.getElementById("signup-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      signup();
+      this.reset();
+    });
+  </script>
+</body>
+</html>

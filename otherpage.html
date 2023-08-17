@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Recommendations Page</title>
+  <link rel="stylesheet" type="text/css" href="styles1.css">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .product-center {
+      text-align: center;
+    }
+
+    .product {
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .recommendations {
+      display: flex;
+      /* Display the products in a flex container */
+      justify-content: center;
+      /* Center the products horizontally */
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    .recommendations .product {
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="logo.jpeg" alt="Logo" class="logo">
+    <h1 style="font-size: 30px; flex: left;color: black;"> Walmart</h1>
+  </header>
+  <nav style="background-color: #a8a2a2; background-size: 30px;padding: 10px;padding-left: 200px ;">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="cart.html">Login</a></li>
+      <li><a href="pro2.html" onclick="return checkLogin()">Products</a></li>
+      <li><a href="About.html" onclick="return checkLogin()">About Us</a></li>
+      <li><a href="Analytics.html" onclick="return checkLogin()">Analytics</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="product-center">
+      <div class="product">
+        <!-- <a href="#"> -->
+        <img src="Enter1.jpg" alt="Purple T-Shirt" id="product-image">
+        <!-- </a> -->
+        <h3>Sneakers</h3>
+        <p>By Adidas</p>
+        <p>$9.99</p>
+        <!-- <button class="button" onclick="addToCart(0)">Add to Cart</button> -->
+      </div>
+    </div>
+
+    <div class="recommendations">
+      <div class="product">
+        <img src="Enter4.jpg" alt="Purple T-Shirt" id="product-image">
+        <!-- </a> -->
+        <h3>Sneakers - New</h3>
+        <p>By Adidas</p>
+        <p>$9.99</p>
+      </div>
+      <div class="product">
+        <img src="Enter5.jpg" alt="Purple T-Shirt" id="product-image">
+        <!-- </a> -->
+        <h3>Lofers</h3>
+        <p>By Adidas</p>
+        <p>$9.99</p>
+      </div>
+      <div class="product">
+        <img src="Enter6.jpg" alt="Purple T-Shirt" id="product-image">
+        <!-- </a> -->
+        <h3>Sneakers</h3>
+        <p>By Nike</p>
+        <p>$9.99</p>
+      </div>
+      <div class="product">
+        <img src="Enter3.jpg" alt="Purple T-Shirt" id="product-image">
+        <!-- </a> -->
+        <h3>Leather - Shoes</h3>
+        <p>By Puma</p>
+        <p>$9.99</p>
+      </div>
+      <div class="product">
+        <img src="Enter2.jpg" alt="Purple T-Shirt" id="product-image">
+        <!-- </a> -->
+        <h3>Sneakers</h3>
+        <p>By Adidas</p>
+        <p>$9.99</p>
+      </div>
+      <!-- Add more recommendation product blocks here -->
+
+    </div>
+  </div>
+
+
+  <script src="script1.js"></script>
+</body>
+
+</html>
